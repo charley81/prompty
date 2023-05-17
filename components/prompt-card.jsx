@@ -12,6 +12,12 @@ export default function PromptCard(
 ) {
   const [copied, setCopied] = useState('')
 
+  const handleCopy = () => {
+    setCopied(post.post.prompt)
+    navigator.clipboard.writeText(post.post.prompt)
+    setTimeout(() => setCopied(''), 3000)
+  }
+
   return (
     <div className="prompt_card">
       <div className="flex justify-between items-start gap-5">
@@ -30,7 +36,7 @@ export default function PromptCard(
             {post.post.creator.email}
           </p>
         </div>
-        <div className="copy_btn" onClick={() => {}}>
+        <div className="copy_btn" onClick={handleCopy}>
           <Image
             src={
               copied === post.post.prompt
